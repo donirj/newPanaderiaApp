@@ -32,7 +32,7 @@ const Tabs = () => {
             />
             <BottomTab.Screen
                 name="OrdersTab"
-                component={ShopNavigator}
+                component={OrdersNavigator}
                 options={{
                     title: 'Orders',
                     tabBarIcon: ({ focused }) => (
@@ -46,7 +46,7 @@ const Tabs = () => {
             />
             <BottomTab.Screen
                 name="CartTab"
-                component={ShopNavigator}
+                component={CartNavigator}
                 options={{
                     title: 'Cart',
                     tabBarIcon: ({ focused }) => (
