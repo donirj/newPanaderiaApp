@@ -2,7 +2,6 @@ import { categories } from "../../constants/data/categories";
 import { categoryTypes } from '../types';
 
 const { SELECT_CATEGORY } = categoryTypes;
-
 //estado inicial del reductor
 const initialState = {
     categories: categories,

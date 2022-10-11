@@ -3,6 +3,9 @@ import { View , FlatList} from "react-native";
 import { OrderItem } from "../../components";
 import { orders } from "../../constants/data";
 import { styles } from "./styles";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteOrder, getOrders } from "../../store/actions";
+import { useFocusEffect } from "@react-navigation/native";
 
 const Orders = ({navigation}) => {
 
