@@ -13,7 +13,7 @@ const Categories = ({ navigation, route }) => {
 
     const onSelected = (item) => {
       dispatch(selectCategory(item.id))
-        navigation.navigate('Products', {name: item.title})
+        navigation.navigate('Products', {name: item.title })
     }
     
   const renderItem = ({ item }) => <CategoryItem item={item} onSelected={onSelected}/>

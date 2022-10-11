@@ -1,5 +1,5 @@
 import React from "react"
-import { View, Text } from "react-native"
+import { View, Text, Button } from "react-native"
 import { styles } from "./styles"
 import { products } from "../../constants/data"
 import { useSelector, useDispatch } from "react-redux";
@@ -16,15 +16,15 @@ const Product = ({ navigation, route }) => {
     const { id, title, description, price, weight } = product || {};
     return (
         <View style={styles.container}>
-            <Text>id {product.id}</Text>
-            <Text> {product.title}</Text>
-            <Text> {product.description}</Text>
-            <Text>$ {product.price}</Text>
-            <Text>weight {product.weight}</Text>
-            <Button 
+            <Text>id: {id}</Text>
+            <Text> {title}</Text>
+            <Text> {description}</Text>
+            <Text>$ {price}</Text>
+            <Text>weight: {weight}</Text>
+            {/* <Button 
                 title="Add to cart"
                 onPress={addCartItem}
-            />
+            /> */}
         </View>
     )
 }
