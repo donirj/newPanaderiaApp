@@ -13,7 +13,8 @@ const Tabs = () => {
         <BottomTab.Navigator
             initialRouteName="ShopTab"
             screenOptions={{
-                headerShown: false
+                headerShown: false,
+                color: colors.primary,
             }}
         >
             <BottomTab.Screen

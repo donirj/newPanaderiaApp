@@ -4,13 +4,14 @@ import { styles } from "./styles"
 import { products } from '../../constants/data'
 import { ProductItem } from "../../components"
 
-const Products = ({ navigation, route }) => {
-    const { categoryId } = route.params
+const Products = ({ navigation }) => {
+
     const productsFiltered = products.filter(product => product.categoryId === categoryId)
     const onSelected = (item) => {
         navigation.navigate('Product', { name: item.title, productId: item.id})
     }
     const renderItem = ({ item }) => <ProductItem item={item} onSelected={onSelected}/>
+    
     return (
         <FlatList
             data={productsFiltered}

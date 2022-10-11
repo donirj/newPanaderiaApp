@@ -1,8 +1,8 @@
-export const CART = [
+export const cart = [
  {
     id: 1,
     category: 1,
-    name: "pan",
+    title: "pan",
     description: "clasico pan",
     weight: "400",
     price: 600,
@@ -11,7 +11,7 @@ export const CART = [
  {
     id: 2,
     category: 1,
-    name: "pan",
+    title: "pan",
     description: "pan de molde",
     weight: "200",
     price: 300,

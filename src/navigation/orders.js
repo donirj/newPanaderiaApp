@@ -1,7 +1,7 @@
 import React from "react";
 import { isAndroid } from "../utils";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Cart } from "../screens"
+import { Cart, Orders } from "../screens"
 import { colors } from "../constants/themes"
 
 const Stack = createNativeStackNavigator()
@@ -21,8 +21,8 @@ const OrdersNavigator = () => {
         }}
         >
             <Stack.Screen
-            name="Cart"
-            component={Cart}
+            name="Orders"
+            component={Orders}
             />
         </Stack.Navigator>
     )
