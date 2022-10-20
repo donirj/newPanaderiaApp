@@ -4,7 +4,7 @@ import { styles } from "./styles";
 import { cart } from "../../constants/data";
 import CartItem from "../../components/cart-item";
 import { useSelector, useDispatch } from "react-redux";
-import { confirmOrder, removeFromCart } from "../../store/actions";
+import { confirmCart, confirmOrder, removeFromCart } from "../../store/actions";
 
 const Cart = ({navigation}) => {
     const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const Cart = ({navigation}) => {
     }
 
     const onConfirm = () => {
-        dispatch(confirmOrder(items, total))
+        dispatch(confirmCart(items, total))
     }
 
     const renderItem = ({item}) => <CartItem item={item} onDelete={onDelete} />
@@ -37,7 +37,7 @@ const Cart = ({navigation}) => {
             <View style={styles.footer}>
                 <TouchableOpacity 
                     style={items.length === 0 ? styles.disabledButtonConfirm : styles.buttonConfirm}
-                    onPress={(onConfirm)}
+                    onPress={onConfirm}
                     disabled={items.length === 0}
                 >
                     <Text style={styles.textButtonConfirm}>Confirm</Text>

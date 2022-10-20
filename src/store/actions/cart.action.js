@@ -33,14 +33,14 @@ export const confirmCart = (items, total) => {
                 })
             })
 
-            const result = await response.json();
+            const result = await response.json()
 
             dispatch({
                 type: CONFIRM_ORDER,
                 result: result,
             })
         } catch (error) {
-            console.log(error.message);
+            console.log(error.message)
         }
     }
 }
