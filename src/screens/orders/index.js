@@ -1,17 +1,28 @@
-import React from "react";
+//useeffect para que al monotar el componente, despachemos el getorders
+import React, { useCallback} from "react";
 import { View , FlatList} from "react-native";
 import { OrderItem } from "../../components";
-import { orders } from "../../constants/data";
-import { styles } from "./styles";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteOrder, getOrders } from "../../store/actions";
+import { styles } from "./styles";
+import { deleteOrder, getOrders } from "../../store/actions/orders.actions";
 import { useFocusEffect } from "@react-navigation/native";
 
 const Orders = ({navigation}) => {
+    const dispatch = useDispatch();
+    const orders = useSelector(state => state.orders.list)
+    
+    useFocusEffect(
+        //useCallback coloca la funcion que yo puse adentro que es el dispatch, en memoria
+        //
+        useCallback(() => {
+            dispatch(getOrders());
+        }, [dispatch])
+    );
 
     const onCancel = (id) => {
-        console.warn(id);
+        dispatch(deleteOrder(id))
     }
+
     const renderItem = ({item}) => <OrderItem item={item} onCancel={onCancel} />
     return (
         <View style={styles.container}>
