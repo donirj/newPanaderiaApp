@@ -1,26 +1,29 @@
 import React, {useState, useReducer} from "react"
 import { View, Text, TouchableOpacity, Button, TextInput, KeyboardAvoidingView } from "react-native"
-import { styles } from "./style"
-import { colors } from '../../constants/themes'
 import { useDispatch } from "react-redux"
-import { signUp } from "../../store/actions/index"
 import { Input } from '../../components'
-import { UPDATED_FROM, onInputChange } from "../../utils/forms"
+import { UPDATED_FORM, onInputChange } from "../../utils/forms"
+import { colors } from '../../constants/themes'
+import { styles } from "./style"
+import { signUp } from "../../store/actions/index"
 
+//estado inicial para el formulario
 const initialState = {
+    //campos requeridos
     email: { value: '', error: '', touched: false, hasError: true},
     password: { value: '', error: '', touched: false, hasError: true},
     isFormValid: false,
 }
-
+//recibe estado y accion, como un reductor
 const formReducer = (state, action) => {
     switch (action.type) {
-        case UPDATED_FROM: 
+        case UPDATED_FORM: 
         const { name, value, hasError, error, touched, isFormValid} = action.data;
         return {
+            //copia del estado original
             ...state,
             [name]: {
-                //recibimos copia de ese estado
+                //recibimos copia de ese estado, del campo name
                 ...state[name],
                 value,
                 hasError,
@@ -38,21 +41,27 @@ const Auth = ({ navigation }) => {
     //al momento de dar click al boton de registro, se despacha signuo
     const dispatch = useDispatch()
     const [isLogin, setIsLogin] = useState(true)
+    // const [email, setEmail] = useState("")
+    // const [password, setPassword] = useState("")
     //estado de formulario va gestionar el tema de mail y password
-    const [formState, dispatchFormState] = useReducer(formReducer, initialState)
-    const title = isLogin ? 'Login' : 'Registro'
-    const message = isLogin ? 'No tienes una cuenta' : 'Ya tienes una cuenta?'
+    const [formState, dispatchFormState] = useReducer(formReducer, initialState);
+    const title = isLogin ? 'Login' : 'Registro';
+    const message = isLogin ? '¿No tienes una cuenta?' : '¿Ya tienes una cuenta?';
     const messageAction = isLogin ? 'Ingresar' : 'Registrarse';
 
     const onHandleSubmit = () => {
         console.log(email, password)
+        const { password, email } = formState;
         //aqui despachamos el signup
+        // dispatch(signUp(email, password))
         dispatch(signUp(formState.email.value, formState.password.value))
     };
 
     const onHandleChange = (value, type) => {
+        //tenemos que crear la funcion onInputChange
         onInputChange(type, value, dispatchFormState, formState)
     }
+
     return (
         
         <KeyboardAvoidingView style={styles.keyboardContainer} behavior="padding" >
@@ -69,9 +78,9 @@ const Auth = ({ navigation }) => {
                     autoCapitalize="none"
                     autoCorrect={false}
                     onChangeText={(text) => onHandleChange(text, 'email')}
-                    hasError={formState.email.value}
-                    error="el mail es requerido"
-                    touched={true}
+                    hasError={formState.email.hasError}
+                    error={formState.email.error}
+                    touched={formState.email.touched}
                 />
                 <Input
                     style={styles.input}

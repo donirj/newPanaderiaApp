@@ -35,6 +35,7 @@ const Input = ({
                 keyboardType={keyboardType}
             />       
             </Label>
+            {/* si hay algun error */}
             {hasError && touched && (
                 <View style={styles.message}>
                     <Text style={styles.helperText}>{error}</Text>
